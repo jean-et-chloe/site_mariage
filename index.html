@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jean & Chloé — Notre Mariage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F8F7F5;
+    --cream-dark: #EBF0EC;
+    --gold: #2F4E86;
+    --gold-light: #6FAFE7;
+    --gold-pale: #C9E3F7;
+    --brown: #2F4E86;
+    --text: #3E4651;
+    --text-muted: #6E7682;
+    --font-script: 'Great Vibes', cursive;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'DM Sans', sans-serif;
+    --accent-coral: #D97B72;
+    --accent-orange: #E88A4D;
+    --accent-green: #8FBF7A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: url("fond.jpeg") repeat center center / 600px auto;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN TEXTURE ── */
+  .img-wrap {
+    position: relative;
+    display: block;
+    line-height: 0;
+  }
+
+  /* ── VIDEO INTRO ── */
+  #video-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #0d1826;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #video-intro.hidden { opacity: 0; visibility: hidden; }
+
+  #intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #skip-btn {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.8);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  #skip-btn:hover { background: rgba(255,255,255,0.22); color: #fff; }
+
+  /* ── MAIN SITE ── */
+  #site { opacity: 0; transition: opacity 1s ease; }
+  #site.visible { opacity: 1; }
+
+  /* ── SECTION BASE ── */
+  .section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+    position: relative;
+    text-align: center;
+  }
+
+  /* ── ORNAMENT ── */
+  .ornament {
+    display: block;
+    margin: 0 auto 1.5rem;
+    color: var(--accent-coral);
+    font-size: 28px;
+    letter-spacing: 0.3em;
+    opacity: 0.7;
+  }
+  .ornament-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem auto;
+    width: 200px;
+    color: var(--accent-coral);
+  }
+  .ornament-line::before, .ornament-line::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: var(--gold-light);
+    opacity: 0.5;
+  }
+  .ornament-line span { font-size: 18px; }
+
+  /* ── SECTION 1 — HERO ── */
+  #hero {
+    background: url('fond.jpeg') repeat center center / 600px auto;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(184,148,90,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .hero-names {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: clamp(4.5rem, 12vw, 9rem);
+    line-height: 0.9;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .hero-names .amp {
+    font-style: italic;
+    color: var(--gold);
+    font-size: 0.65em;
+    display: inline-block;
+    margin: 0 0.1em;
+    vertical-align: middle;
+  }
+
+  .hero-date {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    color: var(--text-muted);
+    margin-top: 2rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-location {
+    font-family: var(--font-sans);
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.8rem;
+  }
+
+  /* Corner ornaments */
+  .corner-ornament {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    opacity: 0.25;
+  }
+  .corner-ornament.tl { top: 2rem; left: 2rem; }
+  .corner-ornament.tr { top: 2rem; right: 2rem; transform: scaleX(-1); }
+  .corner-ornament.bl { bottom: 2rem; left: 2rem; transform: scaleY(-1); }
+  .corner-ornament.br { bottom: 2rem; right: 2rem; transform: scale(-1); }
+
+  /* ── SECTION 2 — INFO ── */
+  #infos {
+    background: var(--brown);
+    color: var(--cream);
+    padding: 7rem 2rem;
+  }
+  #infos::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 100% 80% at 50% 50%, rgba(47,78,134,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .section-title {
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    letter-spacing: 0.01em;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+  }
+  .section-title.light { color: var(--gold); }
+  .section-title.dark { color: var(--gold); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0;
+    max-width: 860px;
+    width: 100%;
+    margin: 3rem auto 0;
+    border: 0.5px solid rgba(111,175,231,0.3);
+  }
+  .info-card {
+    padding: 2.5rem 2rem;
+    border: 0.5px solid rgba(111,175,231,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .info-card-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+  .info-card-icon svg { width: 28px; height: 28px; stroke: var(--gold-light); fill: none; stroke-width: 1.2; }
+  .info-card-label {
+    font-family: var(--font-sans);
+    font-weight: 200;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+  .info-card-value {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.3rem;
+    color: var(--cream);
+    line-height: 1.4;
+  }
+  .info-card-sub {
+    font-family: var(--font-sans);
+    font-weight: 200;
+    font-size: 12px;
+    color: rgba(250,247,242,0.55);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── SECTION 3 — PROGRAMME ── */
+  #programme {
+    background: url('fond.jpeg') repeat center center / 600px auto;
+    padding: 7rem 2rem;
+  }
+  .programme-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 520px;
+    width: 100%;
+    margin: 3rem auto 0;
+    position: relative;
+  }
+  .programme-list::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 0.5px;
+    background: var(--gold-light);
+    opacity: 0.4;
+    transform: translateX(-50%);
+  }
+  .programme-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    text-align: left;
+    position: relative;
+  }
+  .programme-item:nth-child(even) { flex-direction: row-reverse; text-align: right; }
+  .programme-time {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold);
+    min-width: 70px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .programme-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+  }
+  .programme-desc {
+    flex: 1;
+  }
+  .programme-desc strong {
+    display: block;
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .programme-desc span {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── SECTION 4 — FORMULAIRE ── */
+  #reponse {
+    background: url('fond.jpeg') repeat center center / 600px auto;
+    padding: 7rem 2rem;
+  }
+  .form-container {
+    max-width: 540px;
+    width: 100%;
+    margin: 3rem auto 0;
+  }
+  .form-group {
+    margin-bottom: 2rem;
+  }
+  .form-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .form-name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .form-input {
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid var(--gold-light);
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 15px;
+    padding: 8px 0;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-input::placeholder { color: var(--text-muted); opacity: 0.5; }
+  .form-input:focus { border-bottom-color: var(--gold); }
+
+  .presence-options {
+    display: flex;
+    gap: 1rem;
+  }
+  .presence-option {
+    flex: 1;
+    position: relative;
+  }
+  .presence-option input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .presence-option label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 12px;
+    border: 0.5px solid var(--gold-light);
+    cursor: pointer;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--text-muted);
+    transition: all 0.3s;
+    letter-spacing: 0.1em;
+  }
+  .presence-option input:checked + label {
+    border-color: var(--gold);
+    background: var(--gold-pale);
+    color: var(--brown);
+  }
+  .presence-option label:hover { border-color: var(--gold); }
+
+  .form-textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid var(--gold-light);
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 15px;
+    padding: 8px 0;
+    outline: none;
+    resize: none;
+    transition: border-color 0.3s;
+    height: 50px;
+  }
+  .form-textarea::placeholder { color: var(--text-muted); opacity: 0.5; }
+  .form-textarea:focus { border-bottom-color: var(--gold); }
+
+  .form-submit {
+    display: block;
+    width: 100%;
+    margin-top: 2.5rem;
+    padding: 14px 40px;
+    background: transparent;
+    border: 0.5px solid var(--gold);
+    color: var(--brown);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .form-submit:hover { background: var(--gold); color: #fff; }
+
+  .form-footnote {
+    margin-top: 1.5rem;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+  .form-success .success-icon {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .form-success p {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* ── SECTION 5 — FAQ ── */
+  #faq {
+    background: url('fond.jpeg') repeat center center / 600px auto;
+    padding: 7rem 2rem;
+  }
+  .faq-list {
+    max-width: 640px;
+    width: 100%;
+    margin: 3rem auto 0;
+  }
+  .faq-item {
+    border-bottom: 0.5px solid var(--gold-light);
+  }
+  .faq-item:first-child { border-top: 0.5px solid var(--gold-light); }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 1.4rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--text);
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .faq-question:hover { color: var(--gold); }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    position: relative;
+  }
+  .faq-icon::before, .faq-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--gold);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .faq-icon::before { width: 18px; height: 0.5px; top: 50%; left: 0; transform: translateY(-50%); }
+  .faq-icon::after { width: 0.5px; height: 18px; left: 50%; top: 0; transform: translateX(-50%); }
+  .faq-item.open .faq-icon::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0,1,0,1);
+  }
+  .faq-item.open .faq-answer { max-height: 300px; transition: max-height 0.5s ease-in-out; }
+  .faq-answer-inner {
+    padding-bottom: 1.4rem;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  /* ── SECTION 6 — CADEAUX ── */
+  #cadeaux {
+    background: url('fond.jpeg') repeat center center / 600px auto;
+    color: var(--text);
+    padding: 7rem 2rem;
+  }
+  .cadeaux-desc {
+    max-width: 460px;
+    margin: 0 auto 3rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .qr-placeholder {
+    width: 200px;
+    height: 200px;
+    border: 0.5px solid rgba(111,175,231,0.4);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-weight: 200;
+    background: rgba(111,175,231,0.07);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .qr-placeholder:hover { background: rgba(111,175,231,0.14); }
+  .qr-placeholder svg { width: 48px; height: 48px; opacity: 0.4; stroke: var(--gold-light); fill: none; stroke-width: 1; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: url('fond.jpeg') repeat center center / 600px auto;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 0.5px solid var(--gold-pale);
+  }
+  .footer-names {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .footer-note {
+    font-family: var(--font-sans);
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  /* ── NAV DOTS ── */
+  #nav-dots {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+  .nav-dot.active { opacity: 1; background: var(--gold); transform: scale(1.4); }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.35s; }
+  .reveal-delay-4 { transition-delay: 0.5s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .form-name-row { grid-template-columns: 1fr; }
+    .programme-item, .programme-item:nth-child(even) {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      padding-left: 1.5rem;
+    }
+    .programme-list::before { left: 0; }
+    .presence-options { flex-direction: column; }
+    #nav-dots { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- VIDEO INTRO -->
+<div id="video-intro">
+  <video id="intro-video" autoplay muted playsinline>
+    <source src="animation.mp4" type="video/mp4">
+  </video>
+  <button id="skip-btn" onclick="skipVideo()">Passer →</button>
+</div>
+
+<!-- NAV DOTS -->
+<nav id="nav-dots" aria-label="Navigation">
+  <button class="nav-dot active" onclick="scrollTo('hero')" title="Accueil"></button>
+  <button class="nav-dot" onclick="scrollTo('programme')" title="Programme"></button>
+  <button class="nav-dot" onclick="scrollTo('reponse')" title="Réponse"></button>
+  <button class="nav-dot" onclick="scrollTo('dresscode')" title="Dress code"></button>
+  <button class="nav-dot" onclick="scrollTo('faq')" title="FAQ"></button>
+  <button class="nav-dot" onclick="scrollTo('cadeaux')" title="Cadeaux"></button>
+</nav>
+
+<!-- MAIN SITE -->
+<main id="site">
+
+  <!-- SECTION 1 — HERO (image) -->
+  <section id="hero" style="padding: 0; min-height: 100vh; display: flex; align-items: stretch;">
+    <div class="img-wrap" style="width:100%; min-height:100vh;">
+      <img src="infos.jpeg" alt="Jean & Chloé — 07 août 2027 à Vannes" class="reveal" style="width: 100%; height: 100vh; object-fit: cover; object-position: center top; display: block;">
+    </div>
+  </section>
+
+  <!-- SECTION 3 — PROGRAMME (image) -->
+  <section id="programme" style="padding: 0; background: url('fond.jpeg') repeat center center / 600px auto;">
+    <div class="reveal" style="text-align: center; padding: 5rem 2rem 2rem;">
+      <span style="display: block; font-family: var(--font-script); font-size: clamp(2.8rem, 7vw, 4.5rem); color: var(--gold); line-height: 1; margin-bottom: 0.75rem;">Le déroulé de la journée</span>
+      <div style="display: flex; align-items: center; gap: 1rem; width: 220px; margin: 0 auto;">
+        <span style="flex:1; height: 0.5px; background: var(--gold-light); opacity: 0.5; display:block;"></span>
+        <span style="color: var(--accent-coral); font-size: 16px;">✦</span>
+        <span style="flex:1; height: 0.5px; background: var(--gold-light); opacity: 0.5; display:block;"></span>
+      </div>
+    </div>
+    <div class="img-wrap reveal" style="max-width: 860px; margin: 0 auto; padding-bottom: 3rem;">
+      <img src="map.jpeg" alt="Programme de la journée" style="width: 100%; display: block;">
+    </div>
+  </section>
+
+  <!-- SECTION 4 — FORMULAIRE -->
+  <section class="section" id="reponse" style="min-height: auto;">
+    <span class="ornament reveal">✦ ✦ ✦</span>
+    <h2 class="section-title dark reveal">Confirmez votre présence</h2>
+    <div class="ornament-line reveal"><span>◇</span></div>
+
+    <div class="form-container">
+      <div id="form-content">
+        <div class="form-name-row reveal reveal-delay-1">
+          <div>
+            <label class="form-label">Prénom</label>
+            <input type="text" class="form-input" placeholder="Votre prénom" id="f-prenom" name="prenom">
+          </div>
+          <div>
+            <label class="form-label">Nom</label>
+            <input type="text" class="form-input" placeholder="Votre nom" id="f-nom" name="nom">
+          </div>
+        </div>
+
+        <div class="form-name-row reveal reveal-delay-1">
+          <div>
+            <label class="form-label">Téléphone</label>
+            <input type="tel" class="form-input" placeholder="06 00 00 00 00" id="f-tel" name="telephone">
+          </div>
+          <div>
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="votre@email.com" id="f-email" name="email">
+          </div>
+        </div>
+
+        <div class="form-group reveal reveal-delay-1">
+          <label class="form-label">Serez-vous présent(e) ?</label>
+          <div class="presence-options">
+            <div class="presence-option">
+              <input type="radio" name="presence" id="oui" value="Oui, avec joie !">
+              <label for="oui">✓ &nbsp;Avec joie !</label>
+            </div>
+            <div class="presence-option">
+              <input type="radio" name="presence" id="non" value="Non, je ne pourrai pas">
+              <label for="non">✗ &nbsp;Je ne pourrai pas</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group reveal reveal-delay-2">
+          <label class="form-label">Une musique qui vous fait danser</label>
+          <input type="text" class="form-input" placeholder="Titre — Artiste" id="f-musique" name="musique">
+        </div>
+
+        <button class="form-submit reveal reveal-delay-3" onclick="submitForm()">
+          Envoyer ma réponse
+        </button>
+
+        <p class="form-footnote reveal reveal-delay-3">
+          * Réponse souhaitée au plus tard le <strong style="font-weight:400;">15 juin 2027</strong>.
+          Au-delà de cette date, nous considérerons votre invitation comme déclinée. Merci de votre compréhension.
+        </p>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <div class="success-icon">✦</div>
+        <p>Merci ! Nous avons bien reçu votre réponse.</p>
+        <br>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">À très bientôt ✨</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4b — DRESS CODE -->
+  <section id="dresscode" style="padding: 0; background: url('fond.jpeg') repeat center center / 600px auto;">
+    <div class="img-wrap reveal" style="max-width: 860px; margin: 0 auto;">
+      <img src="dress-code.jpeg" alt="Dress code" style="width: 100%; display: block;">
+    </div>
+  </section>
+
+  <!-- SECTION 5 — FAQ -->
+  <section class="section" id="faq" style="min-height: auto;">
+    <span class="ornament reveal">✦</span>
+    <h2 class="section-title dark reveal">Questions fréquentes</h2>
+    <div class="ornament-line reveal"><span>◇</span></div>
+    <p style="font-size:13px; color: var(--text-muted); margin-top: -0.5rem;" class="reveal">N'hésitez pas à consulter les réponses aux questions les plus fréquemment posées.</p>
+
+    <div class="faq-list reveal reveal-delay-1">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          À quelle heure devons-nous arriver ?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Les horaires précis de chaque moment de la journée sont indiqués dans la rubrique Programme.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Quel est le dress code ?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Il n'y a pas de dress code imposé, une tenue élégante et confortable est idéale !<br><br>
+            Mesdames, les robes longues sauront vous sublimer.<br>
+            Messieurs, une chemise est préconisée.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Puis-je venir accompagné(e) ?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">La présence d'un +1 est possible uniquement si cela est indiqué sur votre invitation. Dans le cas contraire, l'invitation est prévue pour une seule personne.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Peut-on venir accompagnés d'enfants ?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Les enfants sont les bienvenus. Merci de nous le préciser lors de votre réponse.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Le mariage se déroule-t-il en intérieur ou en extérieur ?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Certaines parties auront lieu en extérieur. Une solution de repli est prévue en cas de mauvais temps.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          À quelle heure se termine la soirée ?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">La soirée se prolongera tard dans la nuit, pour celles et ceux qui le souhaitent.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Peut-on prendre des photos pendant la cérémonie ?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Nous comptons sur votre discrétion concernant les téléphones portables durant la cérémonie religieuse.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Comment confirmer notre présence ?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">La confirmation de présence se fait directement via le formulaire Réponse sur ce site.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          À qui s'adresser en cas de question le jour J ?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Les coordonnées utiles seront disponibles sur le site.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 6 — CADEAUX -->
+  <section class="section" id="cadeaux" style="min-height: auto;">
+    <span class="ornament reveal" style="color: var(--gold-light);">✦</span>
+    <h2 class="section-title light reveal">Liste de cadeaux</h2>
+    <div class="ornament-line reveal">
+      <span style="color: var(--gold-light);">◇</span>
+    </div>
+
+    <p class="cadeaux-desc reveal">
+      Votre présence est le plus beau des cadeaux.<br>
+      Si vous souhaitez nous faire un cadeau, vous pouvez contribuer à nos cagnottes ci-dessous.
+    </p>
+
+    <div class="qr-placeholder reveal reveal-delay-1" title="QR code à ajouter">
+      <svg viewBox="0 0 64 64" fill="none" stroke="#6FAFE7" stroke-width="1.5">
+        <rect x="4" y="4" width="24" height="24" rx="2"/>
+        <rect x="8" y="8" width="16" height="16" rx="1"/>
+        <rect x="36" y="4" width="24" height="24" rx="2"/>
+        <rect x="40" y="8" width="16" height="16" rx="1"/>
+        <rect x="4" y="36" width="24" height="24" rx="2"/>
+        <rect x="8" y="40" width="16" height="16" rx="1"/>
+        <rect x="36" y="36" width="6" height="6"/>
+        <rect x="46" y="36" width="6" height="6"/>
+        <rect x="56" y="36" width="6" height="6"/>
+        <rect x="36" y="46" width="6" height="6"/>
+        <rect x="56" y="46" width="6" height="6"/>
+        <rect x="36" y="56" width="6" height="6"/>
+        <rect x="46" y="56" width="16" height="6"/>
+      </svg>
+      <span>QR Code cagnottes</span>
+      <span style="font-size: 9px; opacity: 0.5;">(à intégrer)</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-names">Jean & Chloé</div>
+  <div class="footer-note">* Cette invitation ne vaut que pour une personne.</div>
+  <div style="font-size: 10px; color: var(--gold-light); letter-spacing: 0.2em; opacity: 0.5;">✦</div>
+</footer>
+
+<script>
+function skipVideo() {
+  const intro = document.getElementById('video-intro');
+  intro.classList.add('hidden');
+  showSite();
+}
+
+function showSite() {
+  const site = document.getElementById('site');
+  site.classList.add('visible');
+  initReveal();
+  initNavDots();
+}
+
+const video = document.getElementById('intro-video');
+video.addEventListener('ended', skipVideo);
+video.addEventListener('error', skipVideo);
+setTimeout(() => {
+  if (!document.getElementById('site').classList.contains('visible')) skipVideo();
+}, 12000);
+
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+function initNavDots() {
+  const sections = ['hero','programme','reponse','dresscode','faq','cadeaux'];
+  const dots = document.querySelectorAll('.nav-dot');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = sections.indexOf(e.target.id);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) obs.observe(el);
+  });
+}
+
+function initReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+function submitForm() {
+  const prenom = document.getElementById('f-prenom').value.trim();
+  const nom = document.getElementById('f-nom').value.trim();
+  const tel = document.getElementById('f-tel').value.trim();
+  const presence = document.querySelector('input[name="presence"]:checked');
+  const musique = document.getElementById('f-musique').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+
+  if (!prenom || !nom) { alert('Merci de renseigner votre prénom et nom.'); return; }
+  if (!presence) { alert('Merci d\'indiquer si vous serez présent(e).'); return; }
+
+  const btn = document.querySelector('.form-submit');
+  btn.textContent = 'Envoi en cours…';
+  btn.disabled = true;
+
+  fetch('https://formspree.io/f/mlgzorwb', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      prenom, nom, telephone: tel, email,
+      presence: presence.value,
+      musique: musique || '—'
+    })
+  })
+  .then(r => {
+    if (r.ok) {
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      alert('Une erreur est survenue. Merci de réessayer.');
+      btn.textContent = 'Envoyer ma réponse';
+      btn.disabled = false;
+    }
+  })
+  .catch(() => {
+    alert('Une erreur est survenue. Merci de réessayer.');
+    btn.textContent = 'Envoyer ma réponse';
+    btn.disabled = false;
+  });
+}
+</script>
+</body>
+</html>
